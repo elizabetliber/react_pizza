@@ -1,7 +1,7 @@
 import React from "react";
 import { Categories, SortPopup, PizzaBlock } from "../components";
 
-function Home({items}) {
+function Home({ items }) {
   return (
     <div className="container">
       <div className="content__top">
@@ -9,12 +9,20 @@ function Home({items}) {
           onClickItem={(item) => console.log(item)}
           items={["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"]}
         />
-        <SortPopup items={["популярности", "цене", "алфавиту"]} />
+        <SortPopup
+          items={[
+            { name: "популярности", type: "popular" },
+            { name: "цене", type: "price" },
+            { name: "алфавиту", type: "alphabet" },
+          ]}
+        />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items.map((obj, index) => <PizzaBlock key={obj.id} {...obj}/>)}
-        </div>
+        {items.map((obj, index) => (
+          <PizzaBlock key={obj.id} {...obj} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,10 +1,11 @@
+import { objectOf } from 'prop-types';
 import React from 'react'
 
 export default function SortPopup({items}) {
     const [visiblePopup, setVisiblePopup] = React.useState(false);
     const [selectItem, setSelectItem] = React.useState(0);
     const sortRef = React.useRef(null)
-    const activeLabel = items[selectItem]
+    const activeLabel = items[selectItem].name
 
     const toogleVisiblePopup = () => {
         setVisiblePopup(!visiblePopup)
@@ -46,9 +47,9 @@ export default function SortPopup({items}) {
               </div>
              { visiblePopup && (<div className="sort__popup">
                 <ul>
-                    {items && items.map((item, index) => <li onClick={() => onSelectItem(index)} 
+                    {items && items.map((obj, index) => <li onClick={() => onSelectItem(index)} 
                     className={selectItem === index ? "active":""}  
-                    key={item}>{item}</li>)}
+                    key={obj}>{obj.name}</li>)}
                 </ul>
               </div>)}
             </div>

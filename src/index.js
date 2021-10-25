@@ -2,38 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./scss/app.scss";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
-
-function counterReducer(state = 0, action) {
-   if (action.type === "INCREMENT"){
-      return state + 1;
-   }
-   if (action.type === "DECREMENT"){
-      return state - 1;
-   }
-  return state;
-}
-
-function rootReducer(state, action) {
-   counterReducer(state, action);
-   counterReducer2(state, action);
-   counterReducer3(state, action);
-}
-let store = createStore(rootReducer);
- 
-store.subscribe(() => console.log("хранилище изменилось", store.getState()));
-
-console.log(store.getState());
-
-store.dispatch({ type: "INCREMENT" });
-store.dispatch({ type: "INCREMENT" });
-store.dispatch({ type: "DECREMENT" });
+import { BrowserRouter as Router } from "react-router-dom";
+import {Provider} from "react-redux";
+import store from './redux/store';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById("root")
 );
 
